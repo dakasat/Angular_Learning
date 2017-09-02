@@ -1,0 +1,17 @@
+<p> ToDo - Задачи на закупку</p>
+<button (click)="viewTask()">Показать базу</button>
+<br/>
+<form (ngSubmit)="addTask(); thisForm.reset()" #thisForm="ngForm">
+  <input name="inTask" [(ngModel)]="inTask" placeholder="Введите название задачи">
+  <input name="inInfo" [(ngModel)]="inInfo" placeholder="Описание задачи">
+  <button>Отправить</button>
+</form>
+
+<table>
+  <tr *ngFor="let baseTodo of baseTotos">
+    <td>{{baseTodo.inTask}}</td>
+    <td>{{baseTodo.inInfo}}</td>
+    <td><input name="check" type="checkbox" [(ngModel)]="baseTodo.check"></td>
+    <td><button (click)="taskDelete(baseTodo)">Del</button></td>
+  </tr>
+</table>
