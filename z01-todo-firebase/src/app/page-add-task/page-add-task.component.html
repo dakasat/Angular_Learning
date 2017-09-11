@@ -1,0 +1,46 @@
+<!--<button (click)="consoleLog()">LOG</button>-->
+
+<div class="page-header">
+  <h4>Задания</h4>
+</div>
+
+<!--Форма-->
+<form role="form">
+
+  <div class="form-group">
+    <label for="inTodoName">Название задачи</label>
+    <input [(ngModel)]="inTodoName" name="inTodoName" type="text" id="inTodoName" class="form-control"/>
+  </div>
+
+  <div class="form-group">
+    <label for="inTodoNote">Описание задачи</label>
+    <textarea [(ngModel)]="inTodoNote" name="inTodoNote" cols="30" rows="5"  id="inTodoNote" class="form-control"></textarea>
+  </div>
+
+  <button (click)="addTodo()" type="submit" class="btn btn-default">Добавить задания</button>
+</form>
+
+<!--Вывод задания-->
+<div class="page-header">
+  <h4>Последние 5 добавленных заданий</h4>
+</div>
+
+<div *ngFor="let item of items | async" class="todo-list">
+  <div class="todo-list-view">
+    <h5>{{item.todoName}}</h5>
+    <p>{{item.todoNote}}</p>
+    <p>Задача добавлена в: {{item.addDate | date: 'HH:mm - dd/MM/yyyy'}}</p>
+  </div>
+  <div class="todo-list-bar">
+    <div>
+      <input type="checkbox" [(ngModel)]="item.todoStatus" (click)="changeStatus(item.$key, !item.todoStatus)">
+    </div>
+    <div>
+      <button (click)="delTodo(item.$key)">DEL</button>
+    </div>
+
+  </div>
+</div>
+<!---->
+
+
